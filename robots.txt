@@ -1,0 +1,4 @@
+Sitemap: https://tristanknight.github.io/sitemapindex.xml
+
+User-Agent: *
+Host: tristanknight.github.io
