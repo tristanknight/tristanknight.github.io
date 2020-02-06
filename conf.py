@@ -17,7 +17,7 @@ import time
 
 # Data about this site
 BLOG_AUTHOR = "Tristan Knight"  # (translatable)
-BLOG_TITLE = "Tristan's Site"  # (translatable)
+BLOG_TITLE = "Tristan Knight's Blog"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
 SITE_URL = "https://tristanknight.github.io/"
