@@ -6,47 +6,19 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
-  <loc>https://tristanknight.github.io/authors/roberto-alsina.xml</loc>
-  <lastmod>2020-02-05T09:28:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://tristanknight.github.io/authors/tristan-knight.xml</loc>
-  <lastmod>2020-02-05T09:28:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://tristanknight.github.io/categories/blog.xml</loc>
-  <lastmod>2020-02-05T09:10:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://tristanknight.github.io/categories/cat_nikola.xml</loc>
-  <lastmod>2020-02-05T09:10:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://tristanknight.github.io/categories/demo.xml</loc>
-  <lastmod>2020-02-05T09:10:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://tristanknight.github.io/categories/nikola.xml</loc>
-  <lastmod>2020-02-05T09:10:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://tristanknight.github.io/categories/python.xml</loc>
-  <lastmod>2020-02-05T09:10:00Z</lastmod>
- </sitemap>
- <sitemap>
   <loc>https://tristanknight.github.io/galleries/demo/rss.xml</loc>
-  <lastmod>2020-02-05T09:44:00Z</lastmod>
+  <lastmod>2020-02-06T18:02:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://tristanknight.github.io/galleries/rss.xml</loc>
-  <lastmod>2020-02-05T09:44:00Z</lastmod>
+  <lastmod>2020-02-06T18:02:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://tristanknight.github.io/rss.xml</loc>
-  <lastmod>2020-02-05T09:44:00Z</lastmod>
+  <lastmod>2020-02-06T18:02:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://tristanknight.github.io/sitemap.xml</loc>
-  <lastmod>2020-02-05T09:44:00Z</lastmod>
+  <lastmod>2020-02-06T18:02:00Z</lastmod>
  </sitemap>
 </sitemapindex>
