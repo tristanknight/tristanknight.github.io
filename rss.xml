@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tristan Knight's Blog</title><link>https://tristanknight.github.io/</link><description></description><atom:link href="https://tristanknight.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:tk1824@nyu.edu"&gt;Tristan Knight&lt;/a&gt; </copyright><lastBuildDate>Thu, 06 Feb 2020 18:02:52 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What I learned from using Git as a version control system</title><link>https://tristanknight.github.io/posts/first-post/</link><dc:creator>Tristan Knight</dc:creator><description>&lt;div&gt;&lt;p&gt;I've recently been learning how to use Git, and I can now see why it is such a popular version
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tristan Knight's Blog</title><link>https://tristanknight.github.io/</link><description></description><atom:link href="https://tristanknight.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:tk1824@nyu.edu"&gt;Tristan Knight&lt;/a&gt; </copyright><lastBuildDate>Thu, 06 Feb 2020 18:05:25 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What I learned from using Git as a version control system</title><link>https://tristanknight.github.io/posts/first-post/</link><dc:creator>Tristan Knight</dc:creator><description>&lt;div&gt;&lt;p&gt;I've recently been learning how to use Git, and I can now see why it is such a popular version
 control system. &lt;/p&gt;
 &lt;h5&gt;What is Git and why is version control essential for programmers?&lt;/h5&gt;
 &lt;p&gt;When working on a large project,
@@ -12,10 +12,16 @@ and productivity. &lt;/p&gt;
 &lt;p&gt;After installing and configuring Git, you can easily create a new repository by running the "git init" shell
 command in your project's directory. &lt;/p&gt;
 &lt;p&gt;A Git repository has three key areas:
-   * The Working Directory, which contains the files you can view and edit on your computer 
-   * The Staging Index, which contains files from the working directory which have been added to the staging 
-    index by the user but have not yet been committed
-   * The Repository, where commits are stored&lt;/p&gt;
+   * The Working Directory, which contains the files you can view and edit on your computer &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The Staging Index, which contains files from the working directory which have been added to the staging 
+    index by the user but have not yet been committed&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The Repository, where commits are stored&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h5&gt;What are some of Git's key features?&lt;/h5&gt;
 &lt;p&gt;For a thorough explanation of Git's features, see the &lt;a href="https://git-scm.com/doc"&gt;official 
 Git documentation&lt;/a&gt;. However, I have included a sample of Git's key features, 
