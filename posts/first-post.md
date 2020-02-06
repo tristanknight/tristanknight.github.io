@@ -1,5 +1,5 @@
 <!--
-.. title: First Post
+.. title: What I learned from using Git as a version control system
 .. slug: first-post
 .. date: 2020-02-05 10:45:52 UTC+01:00
 .. tags: 
@@ -8,8 +8,6 @@
 .. description: 
 .. type: text
 -->
-
-# What I learned from using Git as a version control system 
 
 I've recently been learning how to use Git, and I can now see why it is such a popular version
 control system. 

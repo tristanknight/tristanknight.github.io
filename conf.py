@@ -25,7 +25,7 @@ SITE_URL = "https://tristanknight.github.io/"
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://tristanknight.github.io/"
 BLOG_EMAIL = "tk1824@nyu.edu"
-BLOG_DESCRIPTION = "This is a demo site"  # (translatable)
+BLOG_DESCRIPTION = ""  # (translatable)
 
 # Nikola is multilingual!
 #
