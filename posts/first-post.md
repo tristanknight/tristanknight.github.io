@@ -27,8 +27,10 @@ command in your project's directory.
 
 A Git repository has three key areas:
    * The Working Directory, which contains the files you can view and edit on your computer 
+   
    * The Staging Index, which contains files from the working directory which have been added to the staging 
     index by the user but have not yet been committed
+    
    * The Repository, where commits are stored
     
 
