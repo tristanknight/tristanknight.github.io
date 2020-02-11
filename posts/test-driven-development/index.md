@@ -9,7 +9,7 @@
 .. type: text
 -->
 
-Recently, I've been working through *[Obey the Testing Goat!]*(https://www.obeythetestinggoat.com/), 
+Recently, I've been working through [Obey the Testing Goat!](https://www.obeythetestinggoat.com/), 
 a book that covers test-driven development for web-development with Django. 
 Test-driven development (TDD) is a development practice in which developers first write tests and then 
 write the code that is to be tested. This is in contrast to other practices in which code is tested after being written. 
