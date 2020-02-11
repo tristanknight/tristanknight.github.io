@@ -3,24 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>What I learned from using Git as a version control system | Tristan Knight's Blog</title>
+<title>Test-Driven Development | Tristan Knight's Blog</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
-<link rel="canonical" href="https://tristanknight.github.io/posts/first-post/">
+<link rel="canonical" href="https://tristanknight.github.io/posts/test-driven-development/">
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Tristan Knight">
-<link rel="next" href="../test-driven-development/" title="Test-Driven Development" type="text/html">
+<link rel="prev" href="../first-post/" title="What I learned from using Git as a version control system" type="text/html">
 <meta property="og:site_name" content="Tristan Knight's Blog">
-<meta property="og:title" content="What I learned from using Git as a version control system">
-<meta property="og:url" content="https://tristanknight.github.io/posts/first-post/">
-<meta property="og:description" content="I've recently been learning how to use Git, and I can now see why it is such a popular version
-control system. 
-What is Git and why is version control essential for programmers?
-When working on a larg">
+<meta property="og:title" content="Test-Driven Development">
+<meta property="og:url" content="https://tristanknight.github.io/posts/test-driven-development/">
+<meta property="og:description" content="Recently, I've been working through [Obey the Testing Goat!](https://www.obeythetestinggoat.com/), 
+a book that covers test-driven development for web-development with Django. 
+Test-driven development">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2020-02-05T10:45:52+01:00">
+<meta property="article:published_time" content="2020-02-11T12:52:12+01:00">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -78,7 +77,7 @@ When working on a larg">
         
         
         
-<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">What I learned from using Git as a version control system</a></h1>
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Test-Driven Development</a></h1>
 
         <div class="metadata">
             <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
@@ -86,7 +85,7 @@ When working on a larg">
             </span></p>
             <p class="dateline">
             <a href="." rel="bookmark">
-            <time class="published dt-published" datetime="2020-02-05T10:45:52+01:00" itemprop="datePublished" title="2020-02-05 10:45">2020-02-05 10:45</time></a>
+            <time class="published dt-published" datetime="2020-02-11T12:52:12+01:00" itemprop="datePublished" title="2020-02-11 12:52">2020-02-11 12:52</time></a>
             </p>
             
         <p class="sourceline"><a href="index.md" class="sourcelink">Source</a></p>
@@ -96,62 +95,52 @@ When working on a larg">
 
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
-<p>I've recently been learning how to use Git, and I can now see why it is such a popular version
-control system. </p>
-<h5>What is Git and why is version control essential for programmers?</h5>
-<p>When working on a large project,
-some type of version control system is essential -- one needs to be able to keep track of a project's changes and revert to 
-a previous version if something goes wrong. Git also assists teams in coordinating work on a project, since it
-gives each programmer access to a repository containing the full history of the project's codebase. In addition to simple version control, 
-Git provides a multitude of features that improve developers' organization
-and productivity. </p>
-<h5>How does Git work?</h5>
-<p>After installing and configuring Git, you can easily create a new repository by running the "git init" shell
-command in your project's directory. </p>
-<p>A Git repository has three key areas:
-   * The Working Directory, which contains the files you can view and edit on your computer </p>
-<ul>
+<p>Recently, I've been working through <em>[Obey the Testing Goat!]</em>(https://www.obeythetestinggoat.com/), 
+a book that covers test-driven development for web-development with Django. 
+Test-driven development (TDD) is a development practice in which developers first write tests and then 
+write the code that is to be tested. This is in contrast to other practices in which code is tested after being written. 
+Though I have encountered testing in the past, test-driven development's emphasis 
+on writing tests first and is quite different from the programming styles I have used before.</p>
+<h5>Types of testing</h5>
+<p>In software development, two common types of tests are <strong>unit tests</strong> and <strong>functional tests</strong>. 
+Functional tests are used to test whether a feature works correctly from the <em>user's</em> perspective, 
+for example, you may want to write a test to check whether a website displays the correct information, or if a button on a site
+works as a it should. Functional tests are concerned with whether the feature being tested
+works as it should, instead of whether or not the pieces of underlying code work correctly. Functional tests are often accompanied by a user-centered story that 
+makes them readable even to people without a programming background. </p>
+<p>Unit tests, on the other hand, are used to ensure that the <em>code</em> works as it should. 
+Python has a built-in unittest module that includes helpful tools for writing tests. Django 
+also has a django.test.TestCase module which contains some Django-specific features. In TDD,
+every line of code should be unit-tested, and unit tests should be written before the code itself, which helps ensure that the developer
+understands the purpose of the code before writing it. </p>
+<h5>The TDD process</h5>
+<p><em>Obey the Testing Goat</em> also discusses the <em>TDD process</em>, or TDD cycle, which can be summarized as follows:</p>
+<ol>
 <li>
-<p>The Staging Index, which contains files from the working directory which have been added to the staging 
-    index by the user but have not yet been committed</p>
+<p>Write a (functional or unit) test </p>
 </li>
 <li>
-<p>The Repository, where commits are stored</p>
-</li>
-</ul>
-<h5>What are some of Git's key features?</h5>
-<p>For a thorough explanation of Git's features, see the <a href="https://git-scm.com/doc">official 
-Git documentation</a>. However, I have included a sample of Git's key features, 
-which give you the ability to do the following: </p>
-<ul>
-<li>
-<p>Add changes to the staging index, and commit stages from the staging 
-index to the repository with the "git add" and "git commit" commands.
- You can also remove or edit previous commits. </p>
+<p>Run the test. If it passes, proceed to step 5, otherwise proceed to step 3.  </p>
 </li>
 <li>
-<p>Quickly check the commit history with the "git log" command.</p>
+<p>Identify the reason for the test's failure and write the minimum amount of code needed to fix the error (even if 
+the code isn't very well-written)</p>
 </li>
 <li>
-<p>Select which files you'd like Git to ignore </p>
+<p>Run the test again, and if it passes proceed to step 5. Otherwise, go back to step 3.</p>
 </li>
 <li>
-<p>Add a tag (such as a version number) to a particular commit with the "git tag" command.</p>
+<p>Identify code that needs refactoring, and then refactor as necessary. After refactoring,
+return to step 2 to ensure that the refactoring didn't inadvertently break the code. If the code does not need refactoring, continue
+building the program by returning to step 1 and writing a test for another
+piece of </p>
 </li>
-<li>
-<p>Maintain parallel sets of changes with Git's branching functionality. Git's branching feature is key 
-in allowing large teams of developers to work on multiple features of a project simultaneously. </p>
-</li>
-<li>
-<p>The ability to merge independent branches together. Git will also let the user know if there is a merge conflict 
-(i.e. if the branches contain conflicting lines of code), which the will then need to resolve manually.</p>
-</li>
-</ul>
+</ol>
 </div>
     </div>
     <aside class="postpromonav"><nav><ul class="pager hidden-print">
-<li class="next">
-                <a href="../test-driven-development/" rel="next" title="Test-Driven Development">Next post</a>
+<li class="previous">
+                <a href="../first-post/" rel="prev" title="What I learned from using Git as a version control system">Previous post</a>
             </li>
         </ul></nav></aside></article><!--End of body content--><footer id="footer">
             Contents © 2020         <a href="mailto:tk1824@nyu.edu">Tristan Knight</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         

@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tristan Knight's Blog</title><link>https://tristanknight.github.io/</link><description></description><atom:link href="https://tristanknight.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:tk1824@nyu.edu"&gt;Tristan Knight&lt;/a&gt; </copyright><lastBuildDate>Thu, 06 Feb 2020 18:05:25 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What I learned from using Git as a version control system</title><link>https://tristanknight.github.io/posts/first-post/</link><dc:creator>Tristan Knight</dc:creator><description>&lt;div&gt;&lt;p&gt;I've recently been learning how to use Git, and I can now see why it is such a popular version
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tristan Knight's Blog</title><link>https://tristanknight.github.io/</link><description></description><atom:link href="https://tristanknight.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:tk1824@nyu.edu"&gt;Tristan Knight&lt;/a&gt; </copyright><lastBuildDate>Tue, 11 Feb 2020 13:47:11 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Test-Driven Development</title><link>https://tristanknight.github.io/posts/test-driven-development/</link><dc:creator>Tristan Knight</dc:creator><description>&lt;div&gt;&lt;p&gt;Recently, I've been working through &lt;em&gt;[Obey the Testing Goat!]&lt;/em&gt;(https://www.obeythetestinggoat.com/), 
+a book that covers test-driven development for web-development with Django. 
+Test-driven development (TDD) is a development practice in which developers first write tests and then 
+write the code that is to be tested. This is in contrast to other practices in which code is tested after being written. 
+Though I have encountered testing in the past, test-driven development's emphasis 
+on writing tests first and is quite different from the programming styles I have used before.&lt;/p&gt;
+&lt;h5&gt;Types of testing&lt;/h5&gt;
+&lt;p&gt;In software development, two common types of tests are &lt;strong&gt;unit tests&lt;/strong&gt; and &lt;strong&gt;functional tests&lt;/strong&gt;. 
+Functional tests are used to test whether a feature works correctly from the &lt;em&gt;user's&lt;/em&gt; perspective, 
+for example, you may want to write a test to check whether a website displays the correct information, or if a button on a site
+works as a it should. Functional tests are concerned with whether the feature being tested
+works as it should, instead of whether or not the pieces of underlying code work correctly. Functional tests are often accompanied by a user-centered story that 
+makes them readable even to people without a programming background. &lt;/p&gt;
+&lt;p&gt;Unit tests, on the other hand, are used to ensure that the &lt;em&gt;code&lt;/em&gt; works as it should. 
+Python has a built-in unittest module that includes helpful tools for writing tests. Django 
+also has a django.test.TestCase module which contains some Django-specific features. In TDD,
+every line of code should be unit-tested, and unit tests should be written before the code itself, which helps ensure that the developer
+understands the purpose of the code before writing it. &lt;/p&gt;
+&lt;h5&gt;The TDD process&lt;/h5&gt;
+&lt;p&gt;&lt;em&gt;Obey the Testing Goat&lt;/em&gt; also discusses the &lt;em&gt;TDD process&lt;/em&gt;, or TDD cycle, which can be summarized as follows:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Write a (functional or unit) test &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Run the test. If it passes, proceed to step 5, otherwise proceed to step 3.  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Identify the reason for the test's failure and write the minimum amount of code needed to fix the error (even if 
+the code isn't very well-written)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Run the test again, and if it passes proceed to step 5. Otherwise, go back to step 3.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Identify code that needs refactoring, and then refactor as necessary. After refactoring,
+return to step 2 to ensure that the refactoring didn't inadvertently break the code. If the code does not need refactoring, continue
+building the program by returning to step 1 and writing a test for another
+piece of &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;&lt;/div&gt;</description><guid>https://tristanknight.github.io/posts/test-driven-development/</guid><pubDate>Tue, 11 Feb 2020 11:52:12 GMT</pubDate></item><item><title>What I learned from using Git as a version control system</title><link>https://tristanknight.github.io/posts/first-post/</link><dc:creator>Tristan Knight</dc:creator><description>&lt;div&gt;&lt;p&gt;I've recently been learning how to use Git, and I can now see why it is such a popular version
 control system. &lt;/p&gt;
 &lt;h5&gt;What is Git and why is version control essential for programmers?&lt;/h5&gt;
 &lt;p&gt;When working on a large project,
