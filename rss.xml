@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tristan Knight's Blog</title><link>https://tristanknight.github.io/</link><description></description><atom:link href="https://tristanknight.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:tk1824@nyu.edu"&gt;Tristan Knight&lt;/a&gt; </copyright><lastBuildDate>Thu, 13 Feb 2020 12:57:57 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Diagnosing an Error when Importing tkinter</title><link>https://tristanknight.github.io/posts/resolving-issue-with-tkinter/</link><dc:creator>Tristan Knight</dc:creator><description>&lt;div&gt;&lt;p&gt;A couple days ago I encountered a problem while working on a project using 
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tristan Knight's Blog</title><link>https://tristanknight.github.io/</link><description></description><atom:link href="https://tristanknight.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:tk1824@nyu.edu"&gt;Tristan Knight&lt;/a&gt; </copyright><lastBuildDate>Thu, 13 Feb 2020 14:15:26 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Diagnosing an Error when Importing tkinter</title><link>https://tristanknight.github.io/posts/resolving-issue-with-tkinter/</link><dc:creator>Tristan Knight</dc:creator><description>&lt;div&gt;&lt;p&gt;A couple days ago I encountered a problem while working on a project using 
 &lt;a href="https://docs.python.org/3/library/tkinter.html"&gt;tkinter&lt;/a&gt;,
 a popular Python GUI package. At first glance, everything seemed
 fine -- PyCharm appeared to recognize tkinter and nothing suggested anything was amiss. However, when
@@ -7,24 +7,25 @@ I tried running my program I got an error message that looked like this:&lt;/p&g
 &lt;p&gt;&lt;img src="https://tristanknight.github.io/images/initialerror.png" width="800"&gt;&lt;/p&gt;
 &lt;p&gt;I first checked to make sure that I was using the appropriate syntax was importing
 the correct tkinter. Perhaps the T needed to be capitalized? No, that's only when using Python 2. After
-a couple minutes of Googling, I became confident that the problem was something else. &lt;/p&gt;
-&lt;p&gt;Fortunately, the error message offered a helpful suggestion -- perhaps the Python 
+a couple minutes of Googling, I became confident that the problem was something else. 
+Fortunately, the error message offered a helpful suggestion -- perhaps the Python 
 I was using hadn't been correctly configured to work with Tk. &lt;/p&gt;
 &lt;p&gt;After doing a bit more Google searching, it seemed that other people had experienced similar issues.
 One commenter &lt;a href="https://github.com/pyenv/pyenv/issues/94#issuecomment-437180736"&gt;suggested&lt;/a&gt; that Mac OSX users install tcl-tk before installing Python with
 pyenv. I ran &lt;code&gt;pyenv uninstall 3.8.0&lt;/code&gt; to uninstall Python, installed tcl-tk using &lt;a href="https://brew.sh/"&gt;Homebrew&lt;/a&gt;, and then reinstalled 
-Python 3.8.0 using pyenv. &lt;/p&gt;
-&lt;p&gt;I confirmed I was using the appropriate version of Python, then tried importing tkinter again, and got the same error message as before.
+Python 3.8.0 using pyenv. 
+I confirmed I was using the appropriate version of Python, then tried importing tkinter again, and got the same error message as before.
 I ran &lt;code&gt;brew list&lt;/code&gt; and confirmed that Homebrew had in fact installed tcl-tk. I then ran &lt;code&gt;brew info tcl-tk&lt;/code&gt; and got this
 helpful message:&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://tristanknight.github.io/images/brewinfo.png" width="800"&gt;&lt;/p&gt;
 &lt;p&gt;The message indicated that I needed to add tcl-tk to my PATH. 
-I ran the suggested commands, and confirmed that the directives were added to my bash profile.&lt;/p&gt;
-&lt;p&gt;I tried importing tkinter again, and once again got the same message.
-I asked a friend for advice, and she suggested that I uninstall Python again, then 
-run &lt;/p&gt;
-&lt;p&gt;&lt;code&gt;env PYTHON_CONFIGURE_OPTS_ARRAY="--with-tcltk-libs='-L/usr/local/opt/tcl-tk/lib -ltcl8.6 -ltk8.6'"&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;in my console before reinstalling Python. I did this, and this time when I ran &lt;code&gt;import tkinter&lt;/code&gt; I 
+I ran the suggested commands, and confirmed that the directives were added to my bash profile.
+I tried importing tkinter again, and once again got the same message.
+I asked a friend for advice, and she suggested that I uninstall Python again, and then 
+run 
+&lt;code&gt;env PYTHON_CONFIGURE_OPTS_ARRAY="--with-tcltk-libs='-L/usr/local/opt/tcl-tk/lib -ltcl8.6 -ltk8.6'"&lt;/code&gt;
+in my console before reinstalling Python. &lt;/p&gt;
+&lt;p&gt;I did this, and this time when I ran &lt;code&gt;import tkinter&lt;/code&gt; I 
 didn't get an error message. Excited, I ran &lt;code&gt;tkinter._test()&lt;/code&gt; and felt a sense of relief as a window 
 popped up. My relief didn't last long, however, as I quickly noticed an error message in my console:&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://tristanknight.github.io/images/finalerror.png" width="800"&gt;&lt;/p&gt;
@@ -33,13 +34,15 @@ the problem seemed clear from the error message: the tk.h version didn't match t
 Google searching for similar problems, I found that someone had 
 &lt;a href="https://github.com/pyenv/pyenv/issues/1375#issuecomment-524280004"&gt;listed a series of steps&lt;/a&gt; to get the latest version of 
 tcl-tk to work with the pyenv Python install. &lt;/p&gt;
-&lt;p&gt;So I edited my python-build file, replacing &lt;code&gt;$CONFIGURE_OPTS ${!PACKAGE_CONFIGURE_OPTS} 
+&lt;p&gt;So I edited my python-build file, replacing &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$CONFIGURE_OPTS ${!PACKAGE_CONFIGURE_OPTS} 
 "${!PACKAGE_CONFIGURE_OPTS_ARRAY}" || return 1&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;with &lt;code&gt;$CONFIGURE_OPTS --with-tcltk-includes='-I/usr/local/opt/tcl-tk/include' --with-tcltk-libs='-L/usr/local/opt/tcl-tk/lib 
+&lt;p&gt;with &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$CONFIGURE_OPTS --with-tcltk-includes='-I/usr/local/opt/tcl-tk/include' --with-tcltk-libs='-L/usr/local/opt/tcl-tk/lib 
 -ltcl8.6 -ltk8.6' ${!PACKAGE_CONFIGURE_OPTS} "${!PACKAGE_CONFIGURE_OPTS_ARRAY}" || return 1&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;I then re-installed Python, then ran &lt;code&gt;echo -e 'if command -v pyenv 1&amp;gt;/dev/null 2&amp;gt;&amp;amp;1; then\n eval "$(pyenv init -)"\nfi' &amp;gt;&amp;gt; ~/.bash_profile&lt;/code&gt;
+&lt;p&gt;I then re-installed Python, and then ran &lt;code&gt;echo -e 'if command -v pyenv 1&amp;gt;/dev/null 2&amp;gt;&amp;amp;1; then\n eval "$(pyenv init -)"\nfi' &amp;gt;&amp;gt; ~/.bash_profile&lt;/code&gt;
 to update my bash file.&lt;/p&gt;
-&lt;p&gt;I then re-started my command line, checked that I was using the right version of Python, successfully
+&lt;p&gt;Finally, I re-started my command line, checked that I was using the right version of Python, successfully
 ran &lt;code&gt;import tkinter&lt;/code&gt;, then ran &lt;code&gt;tkinter_test()&lt;/code&gt;. 
 This time, the correct window appeared, and there was no error message in the terminal -- I had finally fixed the problem!&lt;/p&gt;
 &lt;p&gt;When using so many different tools and technologies that interact in various ways, it's inevitable that 
