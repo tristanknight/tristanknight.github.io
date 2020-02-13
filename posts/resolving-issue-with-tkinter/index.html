@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnosing an Error when Importing tkinter | Tristan Knight's Blog</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://tristanknight.github.io/posts/resolving-issue-with-tkinter/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Tristan Knight">
+<link rel="prev" href="../test-driven-development/" title="Test-Driven Development" type="text/html">
+<meta property="og:site_name" content="Tristan Knight's Blog">
+<meta property="og:title" content="Diagnosing an Error when Importing tkinter">
+<meta property="og:url" content="https://tristanknight.github.io/posts/resolving-issue-with-tkinter/">
+<meta property="og:description" content="A couple days ago I encountered a problem while working on a project using 
+tkinter,
+a popular Python GUI package. At first glance, everything seemed
+fine -- PyCharm appeared to recognize tkinter and ">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-02-13T11:38:25+01:00">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Header and menu bar -->
+<div class="container">
+      <header class="blog-header py-3"><div class="row nbb-header align-items-center">
+          <div class="col-md-3 col-xs-2 col-sm-2" style="width: auto;">
+            <button class="navbar-toggler navbar-light bg-light nbb-navbar-toggler" type="button" data-toggle="collapse" data-target=".bs-nav-collapsible" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse bs-nav-collapsible bootblog4-search-form-holder">
+                
+            </div>
+        </div>
+          <div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;">
+            <a class="navbar-brand blog-header-logo text-dark" href="https://tristanknight.github.io/">
+
+            <span id="blog-title">Tristan Knight's Blog</span>
+        </a>
+          </div>
+            <div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
+            <nav class="navbar navbar-light bg-white"><ul class="navbar-nav bootblog4-right-nav">
+<li class="nav-item">
+    <a href="index.md" id="sourcelink" class="nav-link">Source</a>
+    </li>
+
+
+                    
+            </ul></nav>
+</div>
+    </div>
+</header><nav class="navbar navbar-expand-md navbar-light bg-white static-top"><div class="collapse navbar-collapse bs-nav-collapsible" id="bs-navbar">
+            <ul class="navbar-nav nav-fill d-flex w-100">
+<li class="nav-item">
+<a href="../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+</div>
+<!-- /.navbar-collapse -->
+</nav>
+</div>
+
+<div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Diagnosing an Error when Importing tkinter</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    Tristan Knight
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2020-02-13T11:38:25+01:00" itemprop="datePublished" title="2020-02-13 11:38">2020-02-13 11:38</time></a>
+            </p>
+            
+        <p class="sourceline"><a href="index.md" class="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>A couple days ago I encountered a problem while working on a project using 
+<a href="https://docs.python.org/3/library/tkinter.html">tkinter</a>,
+a popular Python GUI package. At first glance, everything seemed
+fine -- PyCharm appeared to recognize tkinter and nothing suggested anything was amiss. However, when
+I tried running my program I got an error message that looked like this:</p>
+<p><img src="../../images/initialerror.png" width="800"></p>
+<p>I first checked to make sure that I was using the appropriate syntax was importing
+the correct tkinter. Perhaps the T needed to be capitalized? No, that's only when using Python 2. After
+a couple minutes of Googling, I became confident that the problem was something else. </p>
+<p>Fortunately, the error message offered a helpful suggestion -- perhaps the Python 
+I was using hadn't been correctly configured to work with Tk. </p>
+<p>After doing a bit more Google searching, it seemed that other people had experienced similar issues.
+One commenter <a href="https://github.com/pyenv/pyenv/issues/94#issuecomment-437180736">suggested</a> that Mac OSX users install tcl-tk before installing Python with
+pyenv. I ran <code>pyenv uninstall 3.8.0</code> to uninstall Python, installed tcl-tk using <a href="https://brew.sh/">Homebrew</a>, and then reinstalled 
+Python 3.8.0 using pyenv. </p>
+<p>I confirmed I was using the appropriate version of Python, then tried importing tkinter again, and got the same error message as before.
+I ran <code>brew list</code> and confirmed that Homebrew had in fact installed tcl-tk. I then ran <code>brew info tcl-tk</code> and got this
+helpful message:</p>
+<p><img src="../../images/brewinfo.png" width="800"></p>
+<p>The message indicated that I needed to add tcl-tk to my PATH. 
+I ran the suggested commands, and confirmed that the directives were added to my bash profile.</p>
+<p>I tried importing tkinter again, and once again got the same message.
+I asked a friend for advice, and she suggested that I uninstall Python again, then 
+run </p>
+<p><code>env PYTHON_CONFIGURE_OPTS_ARRAY="--with-tcltk-libs='-L/usr/local/opt/tcl-tk/lib -ltcl8.6 -ltk8.6'"</code></p>
+<p>in my console before reinstalling Python. I did this, and this time when I ran <code>import tkinter</code> I 
+didn't get an error message. Excited, I ran <code>tkinter._test()</code> and felt a sense of relief as a window 
+popped up. My relief didn't last long, however, as I quickly noticed an error message in my console:</p>
+<p><img src="../../images/finalerror.png" width="800"></p>
+<p>Additionally, I realized that the window that had appeared failed to display the correct information. Fortunately, 
+the problem seemed clear from the error message: the tk.h version didn't match the libtk.a version. After doing a bit of 
+Google searching for similar problems, I found that someone had 
+<a href="https://github.com/pyenv/pyenv/issues/1375#issuecomment-524280004">listed a series of steps</a> to get the latest version of 
+tcl-tk to work with the pyenv Python install. </p>
+<p>So I edited my python-build file, replacing <code>$CONFIGURE_OPTS ${!PACKAGE_CONFIGURE_OPTS} 
+"${!PACKAGE_CONFIGURE_OPTS_ARRAY}" || return 1</code></p>
+<p>with <code>$CONFIGURE_OPTS --with-tcltk-includes='-I/usr/local/opt/tcl-tk/include' --with-tcltk-libs='-L/usr/local/opt/tcl-tk/lib 
+-ltcl8.6 -ltk8.6' ${!PACKAGE_CONFIGURE_OPTS} "${!PACKAGE_CONFIGURE_OPTS_ARRAY}" || return 1</code></p>
+<p>I then re-installed Python, then ran <code>echo -e 'if command -v pyenv 1&gt;/dev/null 2&gt;&amp;1; then\n eval "$(pyenv init -)"\nfi' &gt;&gt; ~/.bash_profile</code>
+to update my bash file.</p>
+<p>I then re-started my command line, checked that I was using the right version of Python, successfully
+ran <code>import tkinter</code>, then ran <code>tkinter_test()</code>. 
+This time, the correct window appeared, and there was no error message in the terminal -- I had finally fixed the problem!</p>
+<p>When using so many different tools and technologies that interact in various ways, it's inevitable that 
+sometimes things don't work as they should. Fortunately, there are only so many things that can go wrong, and oftentimes 
+someone else has experienced the same problem and devised a solution. Even though this ended up being the case here, 
+it still took me a few hours to resolve the tkinter issue. But while troubleshooting the problem was frustrating,
+I ended up feeling  quite a bit of satisfaction after the test finally passed successfully. </p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../test-driven-development/" rel="prev" title="Test-Driven Development">Previous post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2020         <a href="mailto:tk1824@nyu.edu">Tristan Knight</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

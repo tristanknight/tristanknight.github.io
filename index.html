@@ -10,7 +10,7 @@
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
 <link rel="canonical" href="https://tristanknight.github.io/">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/test-driven-development/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/resolving-issue-with-tkinter/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -67,7 +67,69 @@
     
         
     <div class="postindex">
-            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/test-driven-development/" class="u-url">Test-Driven Development</a></h1>
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/resolving-issue-with-tkinter/" class="u-url">Diagnosing an Error when Importing tkinter</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        Tristan Knight
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/resolving-issue-with-tkinter/" rel="bookmark">
+            <time class="published dt-published" datetime="2020-02-13T11:38:25+01:00" itemprop="datePublished" title="2020-02-13 11:38">2020-02-13 11:38</time></a>
+            </p>
+                </div>
+            </header><div class="e-content entry-content">
+                    <div>
+<p>A couple days ago I encountered a problem while working on a project using 
+<a href="https://docs.python.org/3/library/tkinter.html">tkinter</a>,
+a popular Python GUI package. At first glance, everything seemed
+fine -- PyCharm appeared to recognize tkinter and nothing suggested anything was amiss. However, when
+I tried running my program I got an error message that looked like this:</p>
+<p><img src="images/initialerror.png" width="800"></p>
+<p>I first checked to make sure that I was using the appropriate syntax was importing
+the correct tkinter. Perhaps the T needed to be capitalized? No, that's only when using Python 2. After
+a couple minutes of Googling, I became confident that the problem was something else. </p>
+<p>Fortunately, the error message offered a helpful suggestion -- perhaps the Python 
+I was using hadn't been correctly configured to work with Tk. </p>
+<p>After doing a bit more Google searching, it seemed that other people had experienced similar issues.
+One commenter <a href="https://github.com/pyenv/pyenv/issues/94#issuecomment-437180736">suggested</a> that Mac OSX users install tcl-tk before installing Python with
+pyenv. I ran <code>pyenv uninstall 3.8.0</code> to uninstall Python, installed tcl-tk using <a href="https://brew.sh/">Homebrew</a>, and then reinstalled 
+Python 3.8.0 using pyenv. </p>
+<p>I confirmed I was using the appropriate version of Python, then tried importing tkinter again, and got the same error message as before.
+I ran <code>brew list</code> and confirmed that Homebrew had in fact installed tcl-tk. I then ran <code>brew info tcl-tk</code> and got this
+helpful message:</p>
+<p><img src="images/brewinfo.png" width="800"></p>
+<p>The message indicated that I needed to add tcl-tk to my PATH. 
+I ran the suggested commands, and confirmed that the directives were added to my bash profile.</p>
+<p>I tried importing tkinter again, and once again got the same message.
+I asked a friend for advice, and she suggested that I uninstall Python again, then 
+run </p>
+<p><code>env PYTHON_CONFIGURE_OPTS_ARRAY="--with-tcltk-libs='-L/usr/local/opt/tcl-tk/lib -ltcl8.6 -ltk8.6'"</code></p>
+<p>in my console before reinstalling Python. I did this, and this time when I ran <code>import tkinter</code> I 
+didn't get an error message. Excited, I ran <code>tkinter._test()</code> and felt a sense of relief as a window 
+popped up. My relief didn't last long, however, as I quickly noticed an error message in my console:</p>
+<p><img src="images/finalerror.png" width="800"></p>
+<p>Additionally, I realized that the window that had appeared failed to display the correct information. Fortunately, 
+the problem seemed clear from the error message: the tk.h version didn't match the libtk.a version. After doing a bit of 
+Google searching for similar problems, I found that someone had 
+<a href="https://github.com/pyenv/pyenv/issues/1375#issuecomment-524280004">listed a series of steps</a> to get the latest version of 
+tcl-tk to work with the pyenv Python install. </p>
+<p>So I edited my python-build file, replacing <code>$CONFIGURE_OPTS ${!PACKAGE_CONFIGURE_OPTS} 
+"${!PACKAGE_CONFIGURE_OPTS_ARRAY}" || return 1</code></p>
+<p>with <code>$CONFIGURE_OPTS --with-tcltk-includes='-I/usr/local/opt/tcl-tk/include' --with-tcltk-libs='-L/usr/local/opt/tcl-tk/lib 
+-ltcl8.6 -ltk8.6' ${!PACKAGE_CONFIGURE_OPTS} "${!PACKAGE_CONFIGURE_OPTS_ARRAY}" || return 1</code></p>
+<p>I then re-installed Python, then ran <code>echo -e 'if command -v pyenv 1&gt;/dev/null 2&gt;&amp;1; then\n eval "$(pyenv init -)"\nfi' &gt;&gt; ~/.bash_profile</code>
+to update my bash file.</p>
+<p>I then re-started my command line, checked that I was using the right version of Python, successfully
+ran <code>import tkinter</code>, then ran <code>tkinter_test()</code>. 
+This time, the correct window appeared, and there was no error message in the terminal -- I had finally fixed the problem!</p>
+<p>When using so many different tools and technologies that interact in various ways, it's inevitable that 
+sometimes things don't work as they should. Fortunately, there are only so many things that can go wrong, and oftentimes 
+someone else has experienced the same problem and devised a solution. Even though this ended up being the case here, 
+it still took me a few hours to resolve the tkinter issue. But while troubleshooting the problem was frustrating,
+I ended up feeling  quite a bit of satisfaction after the test finally passed successfully. </p>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/test-driven-development/" class="u-url">Test-Driven Development</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                         Tristan Knight
@@ -120,6 +182,11 @@ building the program by returning to step 1 and writing a test for another
 piece of </p>
 </li>
 </ol>
+<p>I've found learning about test-driven development to be fascinating, and I can certainly see the utility of writing comprehensive tests
+before writing code. However, I feel that the book does a better job of offering a high-level explanation of testing than it does of teaching you <em>how</em> to write your own tests. 
+Although there are plenty examples of tests given, it can be a little difficult translating these examples to actually writing your own tests for completely different programs. 
+Therefore, I plan to practice writing unit tests and functional tests while working on person projects going forward in order 
+to develop a better understanding of testing.  </p>
 </div>
                 </div>
             </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/first-post/" class="u-url">What I learned from using Git as a version control system</a></h1>
