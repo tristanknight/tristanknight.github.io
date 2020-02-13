@@ -48,3 +48,9 @@ return to step 2 to ensure that the refactoring didn't inadvertently break the c
 building the program by returning to step 1 and writing a test for another
 piece of 
 
+I've found learning about test-driven development to be fascinating, and I can certainly see the utility of writing comprehensive tests
+before writing code. However, I feel that the book does a better job of offering a high-level explanation of testing than it does of teaching you *how* to write your own tests. 
+Although there are plenty examples of tests given, it can be a little difficult translating these examples to actually writing your own tests for completely different programs. 
+Therefore, I plan to practice writing unit tests and functional tests while working on person projects going forward in order 
+to develop a better understanding of testing.  
+
