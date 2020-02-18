@@ -15,7 +15,7 @@
  </url>
  <url>
   <loc>https://tristanknight.github.io/archive.html</loc>
-  <lastmod>2020-02-13T12:35:00Z</lastmod>
+  <lastmod>2020-02-18T11:33:00Z</lastmod>
  </url>
  <url>
   <loc>https://tristanknight.github.io/categories/</loc>
@@ -102,11 +102,23 @@
   <lastmod>2020-02-06T16:43:00Z</lastmod>
  </url>
  <url>
+  <loc>https://tristanknight.github.io/posts/mocking-in-python-unit-testing/</loc>
+  <lastmod>2020-02-18T14:17:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://tristanknight.github.io/posts/mocking-in-python-using-the-unittestmock-library/</loc>
+  <lastmod>2020-02-18T11:31:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://tristanknight.github.io/posts/resolving-issue-with-tkinter/</loc>
   <lastmod>2020-02-13T12:35:00Z</lastmod>
  </url>
  <url>
   <loc>https://tristanknight.github.io/posts/test-driven-development/</loc>
   <lastmod>2020-02-11T13:47:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://tristanknight.github.io/posts/using-poetry-to-manage-dependencies-in-python/</loc>
+  <lastmod>2020-02-18T11:31:00Z</lastmod>
  </url>
 </urlset>

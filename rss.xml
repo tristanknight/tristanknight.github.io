@@ -1,5 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tristan Knight's Blog</title><link>https://tristanknight.github.io/</link><description></description><atom:link href="https://tristanknight.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:tk1824@nyu.edu"&gt;Tristan Knight&lt;/a&gt; </copyright><lastBuildDate>Thu, 13 Feb 2020 14:15:26 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Diagnosing an Error when Importing tkinter</title><link>https://tristanknight.github.io/posts/resolving-issue-with-tkinter/</link><dc:creator>Tristan Knight</dc:creator><description>&lt;div&gt;&lt;p&gt;A couple days ago I encountered a problem while working on a project using 
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tristan Knight's Blog</title><link>https://tristanknight.github.io/</link><description></description><atom:link href="https://tristanknight.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:tk1824@nyu.edu"&gt;Tristan Knight&lt;/a&gt; </copyright><lastBuildDate>Tue, 18 Feb 2020 14:17:49 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Using Poetry to Manage Dependencies in Python</title><link>https://tristanknight.github.io/posts/using-poetry-to-manage-dependencies-in-python/</link><dc:creator>Tristan Knight</dc:creator><description>&lt;div&gt;&lt;p&gt;A couple weeks ago, I started using &lt;a href="https://python-poetry.org/"&gt;Poetry&lt;/a&gt; to
+manage my projects' dependencies. So far, I have found it very helpful for quickly starting new projects and managing the dependencies of 
+my existing projects. &lt;/p&gt;
+&lt;h5&gt;What is Poetry?&lt;/h5&gt;
+&lt;p&gt;Poetry is a dependency and packaging management tool for Python. With Poetry,
+it's easy to create a new project and manage its dependencies. &lt;/p&gt;
+&lt;h5&gt;Getting Started with Poetry&lt;/h5&gt;
+&lt;p&gt;The &lt;a href="https://python-poetry.org/docs/"&gt;Poetry documentation&lt;/a&gt; explains how Poetry works in more detail. But it's quite easy to get started; first, you need 
+install Poetry. On MacOS, you can install Poetry in the command line by running &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python &lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Once Poetry is installed, you can create a new project in your 
+ current directory by running &lt;code&gt;poetry new project_name&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;A project created with Poetry will have some built-in files, one of which is 
+called "pyproject.toml"; this is where you can specify the dependencies the project will use.&lt;/p&gt;
+&lt;p&gt;My pyproject.toml file for this blog looks like this: &lt;/p&gt;
+&lt;p&gt;&lt;img src="https://tristanknight.github.io/images/pyprojecttoml.png" width="800"&gt;&lt;/p&gt;
+&lt;p&gt;As you can see, this project doesn't have very many dependencies, but for projects that require lots of dependencies,
+it's helpful to be able to quickly add them to a single file. Poetry also includes syntax for specifying the 
+version constraints for a given dependency, which you can read 
+about &lt;a href="https://python-poetry.org/docs/dependency-specification/"&gt;here&lt;/a&gt;. If you want to quickly add a dependency to 
+pyproject.toml without opening the file, you can do so via the command line with &lt;code&gt;poetry add dependency_name&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Once you've added the dependencies you need for the project, run &lt;code&gt;poetry install&lt;/code&gt;
+in the project directory to install the dependencies (you still need to do this even if you haven't manually 
+added any dependencies to the pyproject.toml file). Poetry will then create a poetry.lock file in your project
+directory which contains the exact versions of the installed dependencies. Committing this file to your project's
+repository ensures that everyone working on the project is locked-in to the same version of each
+dependency.&lt;/p&gt;
+&lt;p&gt;After installation, Poetry will also automatically create a virtual environment for your project
+if one doesn't already exist, but you'll probably need to configure your text editor or IDE to work with 
+that virtual environment. If you're using PyCharm, you can simply navigate to the project interpreter settings,
+either by clicking the button on the bottom-right of the PyCharm UI (as shown below), 
+or by opening PyCharm's settings and navigating from there. &lt;/p&gt;
+&lt;p&gt;&lt;img src="https://tristanknight.github.io/images/bottomright.png" width="600"&gt;&lt;/p&gt;
+&lt;p&gt;Select "add interpreter" to open this window:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://tristanknight.github.io/images/addinterpreter.png" width="800"&gt;&lt;/p&gt;
+&lt;p&gt;Select "existing environment" and then navigate to your project in the the pypoetry directory.
+In order to select the correct interpreter, you need to find the pypoetry directory. 
+For me, the pypoetry directory was located at &lt;/p&gt;
+&lt;p&gt;/Users/username/Library/Caches/pypoetry &lt;/p&gt;
+&lt;p&gt;Once in the pypoetry directory, navigate to &lt;/p&gt;
+&lt;p&gt;/virtualenvs/name-of-project/bin &lt;/p&gt;
+&lt;p&gt;and select "python" as your interpreter. If you don't see the name of your project in the virtualenvs folder,
+ that means you probably forgot to run &lt;code&gt;poetry install&lt;/code&gt; in your project directory. After selecting the correct
+ interpreter, restart the command line, and then your project's virtual environment should be good-to-go! &lt;/p&gt;&lt;/div&gt;</description><guid>https://tristanknight.github.io/posts/using-poetry-to-manage-dependencies-in-python/</guid><pubDate>Tue, 18 Feb 2020 11:28:43 GMT</pubDate></item><item><title>Mocking in Python Unit Testing  </title><link>https://tristanknight.github.io/posts/mocking-in-python-unit-testing/</link><dc:creator>Tristan Knight</dc:creator><description>&lt;div&gt;&lt;p&gt;Recently, I wrote some unit tests for a Sudoku game project that I've been working on.
+However, due to the nature of the project, some functions would be difficult to test without making
+use of mocking. Python has a built-in unittest.mock library that includes helpful tools for implementing
+mock objects in Python. &lt;/p&gt;
+&lt;h5&gt;What is mocking and why is it used?&lt;/h5&gt;
+&lt;p&gt;In unit testing, mocking is replacing part of a program you are testing with a mock version. 
+Mocking enables developers to write self-contained tests in cases where the actual implementation is reliant on 
+complex underlying classes or requests to external services. For example, if a given function includes a request to 
+gather information from a webpage, we probably wouldn't want our test of that function to actually gather the information.
+Instead, we could mock the request so that we are simply testing the function's handling of the information gathered.&lt;/p&gt;
+&lt;p&gt;Additionally, mock tests can save time if running the program's actual implementation is time consuming. 
+For a more detailed explanation of how mocking is used in Python,
+ &lt;a href="https://semaphoreci.com/community/tutorials/getting-started-with-mocking-in-python"&gt;see this blog post&lt;/a&gt; or 
+ the &lt;a href="https://docs.python.org/3/library/unittest.mock.html"&gt;unittest.mock documentation&lt;/a&gt;. &lt;/p&gt;
+&lt;h5&gt;How I've used mocking in my project&lt;/h5&gt;
+&lt;p&gt;When I was working on a &lt;a href="https://en.wikipedia.org/wiki/Sudoku"&gt;Sudoku&lt;/a&gt; program, I needed to write a 
+unit test for a function that checks whether a number in a given cell conflicts with any other cells: &lt;/p&gt;
+&lt;p&gt;&lt;img src="https://tristanknight.github.io/images/checkconflicts.png" width="800"&gt;&lt;/p&gt;
+&lt;p&gt;As you can see, this function depends on self.game.puzzle, the program's implementation of the Sudoku puzzle, 
+which is constructed in a different class. Additionally, the program's implementation of the Sudoku puzzle 
+ in turn relies on other classes and functions. It would therefore be quite complicated to write a test that uses
+  the program's implementation. Therefore, in order to reduce complexity, I 
+created a mock version of the Sudoku puzzle to test the conflict-checking function.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://tristanknight.github.io/images/testcheckconflicts.png" width="800"&gt;&lt;/p&gt;
+&lt;p&gt;In the mocked version, there is a class that mocks the Sudoku puzzle. In my test class,
+I then set the variable puzzle equal to an array of the desired test-case board values.
+I can then create an instance of the MockSudokuGame class, passing in puzzle, then setup the desired test
+case and run the test. If I didn't use mocking, I would have to make my test deal with 
+many other classes, functions, and attributes, which is undesirable due to the complexity
+that it adds.&lt;/p&gt;
+&lt;p&gt;Most of the time, mocking isn't necessary when writing unit tests, but there are some instances, such as the above
+case, where it can come in handy. I'm glad that I took the time to learn the basics of mocking, and hopefully 
+I'll be able to identify cases when it will be useful in the future. &lt;/p&gt;&lt;/div&gt;</description><guid>https://tristanknight.github.io/posts/mocking-in-python-unit-testing/</guid><pubDate>Sun, 16 Feb 2020 13:36:57 GMT</pubDate></item><item><title>Diagnosing an Error when Importing tkinter</title><link>https://tristanknight.github.io/posts/resolving-issue-with-tkinter/</link><dc:creator>Tristan Knight</dc:creator><description>&lt;div&gt;&lt;p&gt;A couple days ago I encountered a problem while working on a project using 
 &lt;a href="https://docs.python.org/3/library/tkinter.html"&gt;tkinter&lt;/a&gt;,
 a popular Python GUI package. At first glance, everything seemed
 fine -- PyCharm appeared to recognize tkinter and nothing suggested anything was amiss. However, when

@@ -10,7 +10,7 @@
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
 <link rel="canonical" href="https://tristanknight.github.io/">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/resolving-issue-with-tkinter/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/using-poetry-to-manage-dependencies-in-python/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -67,7 +67,112 @@
     
         
     <div class="postindex">
-            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/resolving-issue-with-tkinter/" class="u-url">Diagnosing an Error when Importing tkinter</a></h1>
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/using-poetry-to-manage-dependencies-in-python/" class="u-url">Using Poetry to Manage Dependencies in Python</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        Tristan Knight
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/using-poetry-to-manage-dependencies-in-python/" rel="bookmark">
+            <time class="published dt-published" datetime="2020-02-18T12:28:43+01:00" itemprop="datePublished" title="2020-02-18 12:28">2020-02-18 12:28</time></a>
+            </p>
+                </div>
+            </header><div class="e-content entry-content">
+                    <div>
+<p>A couple weeks ago, I started using <a href="https://python-poetry.org/">Poetry</a> to
+manage my projects' dependencies. So far, I have found it very helpful for quickly starting new projects and managing the dependencies of 
+my existing projects. </p>
+<h5>What is Poetry?</h5>
+<p>Poetry is a dependency and packaging management tool for Python. With Poetry,
+it's easy to create a new project and manage its dependencies. </p>
+<h5>Getting Started with Poetry</h5>
+<p>The <a href="https://python-poetry.org/docs/">Poetry documentation</a> explains how Poetry works in more detail. But it's quite easy to get started; first, you need 
+install Poetry. On MacOS, you can install Poetry in the command line by running </p>
+<p><code>curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python </code></p>
+<p>Once Poetry is installed, you can create a new project in your 
+ current directory by running <code>poetry new project_name</code></p>
+<p>A project created with Poetry will have some built-in files, one of which is 
+called "pyproject.toml"; this is where you can specify the dependencies the project will use.</p>
+<p>My pyproject.toml file for this blog looks like this: </p>
+<p><img src="images/pyprojecttoml.png" width="800"></p>
+<p>As you can see, this project doesn't have very many dependencies, but for projects that require lots of dependencies,
+it's helpful to be able to quickly add them to a single file. Poetry also includes syntax for specifying the 
+version constraints for a given dependency, which you can read 
+about <a href="https://python-poetry.org/docs/dependency-specification/">here</a>. If you want to quickly add a dependency to 
+pyproject.toml without opening the file, you can do so via the command line with <code>poetry add dependency_name</code></p>
+<p>Once you've added the dependencies you need for the project, run <code>poetry install</code>
+in the project directory to install the dependencies (you still need to do this even if you haven't manually 
+added any dependencies to the pyproject.toml file). Poetry will then create a poetry.lock file in your project
+directory which contains the exact versions of the installed dependencies. Committing this file to your project's
+repository ensures that everyone working on the project is locked-in to the same version of each
+dependency.</p>
+<p>After installation, Poetry will also automatically create a virtual environment for your project
+if one doesn't already exist, but you'll probably need to configure your text editor or IDE to work with 
+that virtual environment. If you're using PyCharm, you can simply navigate to the project interpreter settings,
+either by clicking the button on the bottom-right of the PyCharm UI (as shown below), 
+or by opening PyCharm's settings and navigating from there. </p>
+<p><img src="images/bottomright.png" width="600"></p>
+<p>Select "add interpreter" to open this window:</p>
+<p><img src="images/addinterpreter.png" width="800"></p>
+<p>Select "existing environment" and then navigate to your project in the the pypoetry directory.
+In order to select the correct interpreter, you need to find the pypoetry directory. 
+For me, the pypoetry directory was located at </p>
+<p>/Users/username/Library/Caches/pypoetry </p>
+<p>Once in the pypoetry directory, navigate to </p>
+<p>/virtualenvs/name-of-project/bin </p>
+<p>and select "python" as your interpreter. If you don't see the name of your project in the virtualenvs folder,
+ that means you probably forgot to run <code>poetry install</code> in your project directory. After selecting the correct
+ interpreter, restart the command line, and then your project's virtual environment should be good-to-go! </p>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/mocking-in-python-unit-testing/" class="u-url">Mocking in Python Unit Testing  </a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        Tristan Knight
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/mocking-in-python-unit-testing/" rel="bookmark">
+            <time class="published dt-published" datetime="2020-02-16T14:36:57+01:00" itemprop="datePublished" title="2020-02-16 14:36">2020-02-16 14:36</time></a>
+            </p>
+                </div>
+            </header><div class="e-content entry-content">
+                    <div>
+<p>Recently, I wrote some unit tests for a Sudoku game project that I've been working on.
+However, due to the nature of the project, some functions would be difficult to test without making
+use of mocking. Python has a built-in unittest.mock library that includes helpful tools for implementing
+mock objects in Python. </p>
+<h5>What is mocking and why is it used?</h5>
+<p>In unit testing, mocking is replacing part of a program you are testing with a mock version. 
+Mocking enables developers to write self-contained tests in cases where the actual implementation is reliant on 
+complex underlying classes or requests to external services. For example, if a given function includes a request to 
+gather information from a webpage, we probably wouldn't want our test of that function to actually gather the information.
+Instead, we could mock the request so that we are simply testing the function's handling of the information gathered.</p>
+<p>Additionally, mock tests can save time if running the program's actual implementation is time consuming. 
+For a more detailed explanation of how mocking is used in Python,
+ <a href="https://semaphoreci.com/community/tutorials/getting-started-with-mocking-in-python">see this blog post</a> or 
+ the <a href="https://docs.python.org/3/library/unittest.mock.html">unittest.mock documentation</a>. </p>
+<h5>How I've used mocking in my project</h5>
+<p>When I was working on a <a href="https://en.wikipedia.org/wiki/Sudoku">Sudoku</a> program, I needed to write a 
+unit test for a function that checks whether a number in a given cell conflicts with any other cells: </p>
+<p><img src="images/checkconflicts.png" width="800"></p>
+<p>As you can see, this function depends on self.game.puzzle, the program's implementation of the Sudoku puzzle, 
+which is constructed in a different class. Additionally, the program's implementation of the Sudoku puzzle 
+ in turn relies on other classes and functions. It would therefore be quite complicated to write a test that uses
+  the program's implementation. Therefore, in order to reduce complexity, I 
+created a mock version of the Sudoku puzzle to test the conflict-checking function.</p>
+<p><img src="images/testcheckconflicts.png" width="800"></p>
+<p>In the mocked version, there is a class that mocks the Sudoku puzzle. In my test class,
+I then set the variable puzzle equal to an array of the desired test-case board values.
+I can then create an instance of the MockSudokuGame class, passing in puzzle, then setup the desired test
+case and run the test. If I didn't use mocking, I would have to make my test deal with 
+many other classes, functions, and attributes, which is undesirable due to the complexity
+that it adds.</p>
+<p>Most of the time, mocking isn't necessary when writing unit tests, but there are some instances, such as the above
+case, where it can come in handy. I'm glad that I took the time to learn the basics of mocking, and hopefully 
+I'll be able to identify cases when it will be useful in the future. </p>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/resolving-issue-with-tkinter/" class="u-url">Diagnosing an Error when Importing tkinter</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                         Tristan Knight

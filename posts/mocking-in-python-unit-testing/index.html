@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mocking in Python Unit Testing   | Tristan Knight's Blog</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://tristanknight.github.io/posts/mocking-in-python-unit-testing/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Tristan Knight">
+<link rel="prev" href="../resolving-issue-with-tkinter/" title="Diagnosing an Error when Importing tkinter" type="text/html">
+<link rel="next" href="../using-poetry-to-manage-dependencies-in-python/" title="Using Poetry to Manage Dependencies in Python" type="text/html">
+<meta property="og:site_name" content="Tristan Knight's Blog">
+<meta property="og:title" content="Mocking in Python Unit Testing  ">
+<meta property="og:url" content="https://tristanknight.github.io/posts/mocking-in-python-unit-testing/">
+<meta property="og:description" content="Recently, I wrote some unit tests for a Sudoku game project that I've been working on.
+However, due to the nature of the project, some functions would be difficult to test without making
+use of mockin">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-02-16T14:36:57+01:00">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Header and menu bar -->
+<div class="container">
+      <header class="blog-header py-3"><div class="row nbb-header align-items-center">
+          <div class="col-md-3 col-xs-2 col-sm-2" style="width: auto;">
+            <button class="navbar-toggler navbar-light bg-light nbb-navbar-toggler" type="button" data-toggle="collapse" data-target=".bs-nav-collapsible" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse bs-nav-collapsible bootblog4-search-form-holder">
+                
+            </div>
+        </div>
+          <div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;">
+            <a class="navbar-brand blog-header-logo text-dark" href="https://tristanknight.github.io/">
+
+            <span id="blog-title">Tristan Knight's Blog</span>
+        </a>
+          </div>
+            <div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
+            <nav class="navbar navbar-light bg-white"><ul class="navbar-nav bootblog4-right-nav">
+<li class="nav-item">
+    <a href="index.md" id="sourcelink" class="nav-link">Source</a>
+    </li>
+
+
+                    
+            </ul></nav>
+</div>
+    </div>
+</header><nav class="navbar navbar-expand-md navbar-light bg-white static-top"><div class="collapse navbar-collapse bs-nav-collapsible" id="bs-navbar">
+            <ul class="navbar-nav nav-fill d-flex w-100">
+<li class="nav-item">
+<a href="../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+</div>
+<!-- /.navbar-collapse -->
+</nav>
+</div>
+
+<div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Mocking in Python Unit Testing  </a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    Tristan Knight
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2020-02-16T14:36:57+01:00" itemprop="datePublished" title="2020-02-16 14:36">2020-02-16 14:36</time></a>
+            </p>
+            
+        <p class="sourceline"><a href="index.md" class="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>Recently, I wrote some unit tests for a Sudoku game project that I've been working on.
+However, due to the nature of the project, some functions would be difficult to test without making
+use of mocking. Python has a built-in unittest.mock library that includes helpful tools for implementing
+mock objects in Python. </p>
+<h5>What is mocking and why is it used?</h5>
+<p>In unit testing, mocking is replacing part of a program you are testing with a mock version. 
+Mocking enables developers to write self-contained tests in cases where the actual implementation is reliant on 
+complex underlying classes or requests to external services. For example, if a given function includes a request to 
+gather information from a webpage, we probably wouldn't want our test of that function to actually gather the information.
+Instead, we could mock the request so that we are simply testing the function's handling of the information gathered.</p>
+<p>Additionally, mock tests can save time if running the program's actual implementation is time consuming. 
+For a more detailed explanation of how mocking is used in Python,
+ <a href="https://semaphoreci.com/community/tutorials/getting-started-with-mocking-in-python">see this blog post</a> or 
+ the <a href="https://docs.python.org/3/library/unittest.mock.html">unittest.mock documentation</a>. </p>
+<h5>How I've used mocking in my project</h5>
+<p>When I was working on a <a href="https://en.wikipedia.org/wiki/Sudoku">Sudoku</a> program, I needed to write a 
+unit test for a function that checks whether a number in a given cell conflicts with any other cells: </p>
+<p><img src="../../images/checkconflicts.png" width="800"></p>
+<p>As you can see, this function depends on self.game.puzzle, the program's implementation of the Sudoku puzzle, 
+which is constructed in a different class. Additionally, the program's implementation of the Sudoku puzzle 
+ in turn relies on other classes and functions. It would therefore be quite complicated to write a test that uses
+  the program's implementation. Therefore, in order to reduce complexity, I 
+created a mock version of the Sudoku puzzle to test the conflict-checking function.</p>
+<p><img src="../../images/testcheckconflicts.png" width="800"></p>
+<p>In the mocked version, there is a class that mocks the Sudoku puzzle. In my test class,
+I then set the variable puzzle equal to an array of the desired test-case board values.
+I can then create an instance of the MockSudokuGame class, passing in puzzle, then setup the desired test
+case and run the test. If I didn't use mocking, I would have to make my test deal with 
+many other classes, functions, and attributes, which is undesirable due to the complexity
+that it adds.</p>
+<p>Most of the time, mocking isn't necessary when writing unit tests, but there are some instances, such as the above
+case, where it can come in handy. I'm glad that I took the time to learn the basics of mocking, and hopefully 
+I'll be able to identify cases when it will be useful in the future. </p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../resolving-issue-with-tkinter/" rel="prev" title="Diagnosing an Error when Importing tkinter">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../using-poetry-to-manage-dependencies-in-python/" rel="next" title="Using Poetry to Manage Dependencies in Python">Next post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2020         <a href="mailto:tk1824@nyu.edu">Tristan Knight</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>
