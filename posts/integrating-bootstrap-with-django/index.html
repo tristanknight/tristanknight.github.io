@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Integrating Bootstrap with Django | Tristan Knight's Blog</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://tristanknight.github.io/posts/integrating-bootstrap-with-django/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Tristan Knight">
+<link rel="prev" href="../using-poetry-to-manage-dependencies-in-python/" title="Using Poetry to Manage Dependencies in Python" type="text/html">
+<meta property="og:site_name" content="Tristan Knight's Blog">
+<meta property="og:title" content="Integrating Bootstrap with Django">
+<meta property="og:url" content="https://tristanknight.github.io/posts/integrating-bootstrap-with-django/">
+<meta property="og:description" content="A couple days ago I worked through chapter 8 
+of Obey the Testing Goat. The chapter covers testing layout and styling in Django
+as well as integrating Bootstrap with Django. I found this chapter inter">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-02-20T12:56:20+01:00">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Header and menu bar -->
+<div class="container">
+      <header class="blog-header py-3"><div class="row nbb-header align-items-center">
+          <div class="col-md-3 col-xs-2 col-sm-2" style="width: auto;">
+            <button class="navbar-toggler navbar-light bg-light nbb-navbar-toggler" type="button" data-toggle="collapse" data-target=".bs-nav-collapsible" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse bs-nav-collapsible bootblog4-search-form-holder">
+                
+            </div>
+        </div>
+          <div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;">
+            <a class="navbar-brand blog-header-logo text-dark" href="https://tristanknight.github.io/">
+
+            <span id="blog-title">Tristan Knight's Blog</span>
+        </a>
+          </div>
+            <div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
+            <nav class="navbar navbar-light bg-white"><ul class="navbar-nav bootblog4-right-nav">
+<li class="nav-item">
+    <a href="index.md" id="sourcelink" class="nav-link">Source</a>
+    </li>
+
+
+                    
+            </ul></nav>
+</div>
+    </div>
+</header><nav class="navbar navbar-expand-md navbar-light bg-white static-top"><div class="collapse navbar-collapse bs-nav-collapsible" id="bs-navbar">
+            <ul class="navbar-nav nav-fill d-flex w-100">
+<li class="nav-item">
+<a href="../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+</div>
+<!-- /.navbar-collapse -->
+</nav>
+</div>
+
+<div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Integrating Bootstrap with Django</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    Tristan Knight
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2020-02-20T12:56:20+01:00" itemprop="datePublished" title="2020-02-20 12:56">2020-02-20 12:56</time></a>
+            </p>
+            
+        <p class="sourceline"><a href="index.md" class="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>A couple days ago I worked through <a href="https://www.obeythetestinggoat.com/book/chapter_prettification.html">chapter 8</a> 
+of <a href="https://www.obeythetestinggoat.com/">Obey the Testing Goat</a>. The chapter covers testing layout and styling in Django
+as well as integrating <a href="https://getbootstrap.com/">Bootstrap</a> with Django. I found this chapter interesting, and so I decided to 
+learn a little more about Bootstrap and CSS styling with Django.</p>
+<h5>A brief overview of Bootstrap</h5>
+<p>Bootstrap is a popular front-end CSS framework that makes it easier to add 
+styles to a website. Bootstrap includes a host of built-in CSS classes that enable the use of a variety of different styles
+and components without needing to write the CSS yourself. Bootstrap also provides Javascript plugins that enable various components to function properly.
+ Bootstrap's documentation explains a variety of different component classes in detail. For example,
+see the <a href="https://getbootstrap.com/docs/4.4/components/buttons/">documentation page on buttons</a>.    </p>
+<h5>Using Bootstrap with Django -- An example from <em>Obey the Testing Goat</em>
+</h5>
+<p>There are two ways to integrate Bootstrap with Django. The <strong>first way</strong>, which is used in the book, involves downloading 
+Bootstrap and placing the Bootstrap files in your project directory. This method requires a little bit more setup than
+the second one, but it allows for offline testing 
+of the HTML templates. Once the Bootstrap files are in your project directory, you can then add links to the directory location
+Bootstrap CSS in your HTML base template, like so:</p>
+<p><img src="../../images/bootstrapcsslink.png" width="600"></p>
+<p>Here, the link tag refers to the location of the bootstrap.min.css file in the project directory. Any HTML files that inherit
+from the base class won't need this link. You will also need to make a few changes in order to configure your static files for deployment.
+ For more details see 
+<a href="https://www.obeythetestinggoat.com/book/chapter_prettification.html#_what_we_glossed_over_collectstatic_and_other_static_directories">chapter 8</a>
+ of <em>Obey the Testing Goat</em>. </p>
+<p>The <strong>second way</strong> is to simply place links to Bootstrap files in your base HTML file. You may also need to place links into 
+other HTML files if they don't inherit from a base file.
+  These links allow requests to be served through Bootstrap's 
+  <a href="https://en.wikipedia.org/wiki/Content_delivery_network">content delivery network (CDN)</a>. 
+  This method requires a bit less setup, but the downside is that serving requests through 
+  the CDN requires an internet connection each time you want to run a functional test of your site.
+  The <a href="https://getbootstrap.com/docs/4.4/getting-started/introduction/">Bootstrap documentation</a> explains 
+how to quickly get started using Bootstrap with the Bootstrap CDN.</p>
+<p>Once Bootstrap is set up, you can use utilize a variety of CSS classes within your templates. 
+As a basic example, let's look at web application I'm building through following  <em>Obey the Testing Goat</em>. Here's the 
+HTML for the body of the homepage prior to using Bootstrap:</p>
+<p><img src="../../images/prebootstraphtml.png" width="800"></p>
+<p>This relatively barebones HTML corresponds to this webpage:</p>
+<p><img src="../../images/originalsite.png" width="800"></p>
+<p>The content from the HTML file appears perfectly fine on the page, but the styling isn't very good, as 
+the form is very off-center and the text is probably too small. After adding Bootstrap CSS classes and refactoring key 
+functionality to a base HTML file, the body of the HTML file looks like this:</p>
+<p><img src="../../images/basehtmlfile.png" width="800"></p>
+<p>As you can see, the key HTML is mostly the same as in the original, but now we've added several CSS classes from Bootstrap
+to improve the styling for the site. Note the container class, which contains row and column elements and is used to create boxed 
+content (also note the row and column classes within the container). Within those classes, there's a text-center class,
+ which centers the header text. After adding the Bootstrap classes, the homepage now looks like this:</p>
+<p><img src="../../images/formattedsite.png" width="800"></p>
+<p>It's still not the most attractive page, but now it's at least well-centered and more easily readable. Of course, there's far
+more that you can do with Bootstrap, and we could make plenty further improvements the styling, such as adding color,
+ designing buttons, improving the layout, and a host of other possibilities (for some ideas, 
+ see the Bootstrap documentation). But this does show that Bootstrap offers 
+ a considerable amount of customizability with relatively few lines of code.
+And if Bootstrap doesn't offer the right styling functionality, you can of course 
+write your own CSS files to style the page in whichever ways you want. </p>
+<p>While I've just had a small amount of exposure to Bootstrap, I'd like to continue learning about it and hope to delve into 
+its more advanced features in the future as I continue to work on backend development with Django.</p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../using-poetry-to-manage-dependencies-in-python/" rel="prev" title="Using Poetry to Manage Dependencies in Python">Previous post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2020         <a href="mailto:tk1824@nyu.edu">Tristan Knight</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>
