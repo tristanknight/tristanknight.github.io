@@ -26,6 +26,7 @@ After installing and configuring Git, you can easily create a new repository by 
 command in your project's directory. 
 
 A Git repository has three key areas:
+
    * The Working Directory, which contains the files you can view and edit on your computer 
    
    * The Staging Index, which contains files from the working directory which have been added to the staging 
